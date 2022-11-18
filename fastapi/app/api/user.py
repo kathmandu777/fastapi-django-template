@@ -2,6 +2,7 @@ from logging import getLogger
 
 from app.models import User
 from app.schemas import CreateUserSchema
+from asgiref.sync import sync_to_async
 from config.password import hash_password
 
 from fastapi import HTTPException, Request
@@ -15,9 +16,9 @@ class UserAPI:
         return current_user
 
     @classmethod
-    def create(cls, request: Request, schema: CreateUserSchema) -> User:
-        user = User.objects.filter(email=schema.email).first()
+    async def create(cls, request: Request, schema: CreateUserSchema) -> User:
+        user = await User.objects.filter(email=schema.email).afirst()
         if user:
             raise HTTPException(status_code=400, detail="Email already registered")
         schema.password = hash_password(schema.password)
-        return User.objects.create(**schema.dict())
+        return await sync_to_async(User.objects.create)(**schema.dict())

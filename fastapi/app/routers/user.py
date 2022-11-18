@@ -18,4 +18,4 @@ async def get(request: Request, current_user: User = Depends(get_current_user)) 
     response_model=ReadUserSchema,
 )
 async def create(request: Request, schema: CreateUserSchema) -> User:
-    return UserAPI.create(request, schema)
+    return await UserAPI.create(request, schema)

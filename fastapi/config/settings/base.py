@@ -121,9 +121,6 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# to use with fastapi
-os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
-
 # User
 AUTH_USER_MODEL = "app.User"
 

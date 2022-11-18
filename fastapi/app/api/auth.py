@@ -1,3 +1,5 @@
+from logging import getLogger
+
 from app.models import User
 from config.exceptions import (
     InvalidCredentialsException,
@@ -9,23 +11,24 @@ from config.password import verify_password
 from fastapi import Request
 from fastapi.security import OAuth2PasswordRequestForm
 
+logger = getLogger(__name__)
+
 
 class AuthAPI:
     @classmethod
-    def login(
+    async def login(
         cls, request: Request, form_data: OAuth2PasswordRequestForm
     ) -> dict[str, str]:
         credentials = {"email": form_data.username, "password": form_data.password}
 
         if all(credentials.values()):
-            user = cls()._authenticate_user(**credentials)
+            user = await cls()._authenticate_user(**credentials)
         else:
             raise InvalidCredentialsException()
         return create_access_token_response({"sub": str(user.uuid)})
 
-    def _authenticate_user(self, email: str, password: str) -> User:
-        user = User.objects.filter(email=email).first()
-
+    async def _authenticate_user(self, email: str, password: str) -> User:
+        user = await User.objects.filter(email=email).afirst()
         if not user:
             raise InvalidEmailOrPasswordException()
         if not verify_password(password, user.password) or not user.is_active:

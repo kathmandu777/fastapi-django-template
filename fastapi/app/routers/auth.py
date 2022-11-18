@@ -11,4 +11,4 @@ auth_router = APIRouter()
 async def login(
     request: Request, form_data: OAuth2PasswordRequestForm = Depends()
 ) -> dict[str, str]:
-    return AuthAPI.login(request, form_data)
+    return await AuthAPI.login(request, form_data)

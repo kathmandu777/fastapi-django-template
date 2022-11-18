@@ -15,7 +15,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> User:
     except JWTError:
         raise InvalidTokenException()
 
-    user = User.objects.filter(uuid=payload.get("sub", "")).first()
+    user = await User.objects.filter(uuid=payload.get("sub", "")).afirst()
     if not user:
         raise InvalidTokenException()
     return user
