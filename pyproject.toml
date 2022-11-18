@@ -27,6 +27,10 @@ line_length = 119
 extend-ignore = "E203,"
 max-line-length = 119
 max-complexity = 10
+extend-immutable-calls = ["Depends", "Form"]
+per-file-ignores = [
+    '__init__.py:F401,F403',
+]
 
 [tool.mypy]
 python_version = "3.10"
