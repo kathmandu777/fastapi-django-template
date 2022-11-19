@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "fastapi-django-template"
+version = "0.1.0"
+description = ""
+authors = ["kathmandu777 <mahhakatomanato@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+pre-commit = "^2.19.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 119
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+line_length = 119
+
+[tool.flake8]
+extend-ignore = "E203,"
+max-line-length = 119
+max-complexity = 10
+extend-immutable-calls = ["Depends", "Form"]
+per-file-ignores = [
+    '__init__.py:F401,F403',
+]
+
+[tool.mypy]
+python_version = "3.10"
+show_error_context = true
+show_column_numbers = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+no_implicit_optional = true
+warn_return_any = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+plugins = "pydantic.mypy"
