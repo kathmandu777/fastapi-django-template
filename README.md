@@ -1,24 +1,24 @@
-# Fastapi x Django Template
+# FastAPI with Django ORM and Admin
 
 ## Overview
 
-DB周り(admin, ORM)はDjangoの機能を用いて、API周りはFastAPIを用いてサーバーを実装する際のテンプレートリポジトリです。
+This is a template repository for implementing the server using Django functionality for the DB area (admin, ORM) and FastAPI for the API area.
 
 ## Prerequisites
 
 ### Poetry
 
-Pythonファイルの依存関係管理はpoetryを使用します。
+Dependency management for Python files is done using POETRY.
 
 1. <https://python-poetry.org/docs/#installation>
 1. `python -m venv venv`
 1. `source venv/bin/activate`
-1. `pip install --upgrade pip` (必要であれば)
-1. `poetry install`
+2. `pip install --upgrade pip` (if needed)
+3. `poetry install`
 
 ### pre-commit (for developers)
 
-commitする前に実行するコマンドを定義するツールです。`.pre-commit-config.yaml` に定義済みなので、それを各自の環境に設定する必要があります。下記手順で行ってください。
+This tool defines commands to be executed before committing. It is already defined in `.pre-commit-config.yaml`, so you need to configure it in your environment. Please follow the steps below.
 
 1. <https://pre-commit.com/#installation>
 1. `pre-commit install`
